@@ -3,20 +3,23 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import { FaReact, FaJs, FaNodeJs, FaPython, FaDatabase, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt } from 'react-icons/fa';
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiFirebase, SiPostgresql, SiMongodb, SiMaterialui } from 'react-icons/si';
+import { DiJavascript } from 'react-icons/di';
 
 const skills = [
-  { name: "React.Js", level: 90 },
-  { name: "Next.js", level: 90 },
-  { name: "JavaScript", level: 90 },
-  { name: "TypeScript", level: 80 },
-  { name: "Tailwind CSS", level: 90 },
-  { name: "Firebase", level: 80 },
-  { name: "PostgreSQL", level: 80 },
-  { name: "Python", level: 90 },
-  { name: "Node.js", level: 80 },
-  { name: "Express", level: 80 },
-  { name: "MongoDB", level: 80 },
-  { name: "Material UI", level: 80 },
+  { name: "React.Js", level: 90, icon: FaReact },
+  { name: "Next.js", level: 90, icon: SiNextdotjs },
+  { name: "JavaScript", level: 90, icon: FaJs || DiJavascript },
+  { name: "TypeScript", level: 80, icon: SiTypescript },
+  { name: "Tailwind CSS", level: 90, icon: SiTailwindcss },
+  { name: "Firebase", level: 80, icon: SiFirebase },
+  { name: "PostgreSQL", level: 80, icon: SiPostgresql },
+  { name: "Python", level: 90, icon: FaPython },
+  { name: "Node.js", level: 80, icon: FaNodeJs },
+  { name: "Express", level: 80, icon: DiJavascript },
+  { name: "MongoDB", level: 80, icon: SiMongodb },
+  { name: "Material UI", level: 80, icon: SiMaterialui },
 ]
 
 const Skills = () => {
@@ -54,9 +57,12 @@ const Skills = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {skills.map((skill, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div key={index} variants={itemVariants} className="bg-gray-900/70 p-4 rounded-lg">
                 <div className="mb-2 flex justify-between items-center">
-                  <span className="text-sm font-medium font-mono">{skill.name}</span>
+                  <div className="flex items-center">
+                    {skill.icon && <skill.icon className="mr-2 text-blue-400" size={20} />}
+                    <span className="text-sm font-medium font-mono text-gray-300">{skill.name}</span>
+                  </div>
                   <span className="text-xs text-gray-400">{skill.level}%</span>
                 </div>
                 <div className="h-2 bg-gray-800 rounded-full overflow-hidden skill-bar">
@@ -77,53 +83,53 @@ const Skills = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
           >
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">C/C++</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+              <FaHtml5 size={20} className="text-orange-500"/> <span className="text-sm font-mono text-gray-300">HTML</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">JavaScript</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <FaJs size={20} className="text-yellow-400" /> <span className="text-sm font-mono text-gray-300">JavaScript</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">TypeScript</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <SiTypescript size={20} className="text-blue-500"/> <span className="text-sm font-mono text-gray-300">TypeScript</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">Python</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <FaPython size={20} className="text-blue-400"/> <span className="text-sm font-mono text-gray-300">Python</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">HTML</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+              <FaHtml5 size={20} className="text-orange-500"/> <span className="text-sm font-mono text-gray-300">HTML</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">CSS</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <FaCss3Alt size={20} className="text-blue-500"/> <span className="text-sm font-mono text-gray-300">CSS</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">TailwindCSS</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <SiTailwindcss size={20} className="text-cyan-400"/> <span className="text-sm font-mono text-gray-300">TailwindCSS</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">Shadcn</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+               <span className="text-sm font-mono text-gray-300">Shadcn</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">MongoDB</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <SiMongodb size={20} className="text-green-500"/> <span className="text-sm font-mono text-gray-300">MongoDB</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">Express.Js</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <FaJs size={20} className="text-yellow-400"/> <span className="text-sm font-mono text-gray-300">Express.Js</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">React.Js</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <FaReact size={20} className="text-blue-400"/> <span className="text-sm font-mono text-gray-300">React.Js</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">Node.js</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+              <FaNodeJs size={20} className="text-green-500"/> <span className="text-sm font-mono text-gray-300">Node.js</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">SQL</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <SiPostgresql size={20} className="text-blue-600"/> <span className="text-sm font-mono text-gray-300">SQL</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">Firebase</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+              <SiFirebase size={20} className="text-yellow-500"/> <span className="text-sm font-mono text-gray-300">Firebase</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">Git</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <FaGitAlt size={20} className="text-orange-600"/> <span className="text-sm font-mono text-gray-300">Git</span>
             </div>
-            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center">
-              <span className="text-sm font-mono text-gray-300">Github</span>
+            <div className="px-4 py-2 bg-gray-900/70 rounded-lg text-center flex items-center justify-center gap-2">
+             <FaGithub size={20} className="text-white"/> <span className="text-sm font-mono text-gray-300">Github</span>
             </div>
           </motion.div>
         </motion.div>

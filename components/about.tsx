@@ -10,9 +10,9 @@ import { FaLinkedin, FaGithub } from "react-icons/fa"
 const About = ({ largePicture = false, showActions = false, glow = false }: { largePicture?: boolean, showActions?: boolean, glow?: boolean }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const imageSize = largePicture ? 192 : 128;
-  const imageClass = largePicture ? "w-48 h-48" : "w-32 h-32";
-  const cardPadding = largePicture ? "p-10" : "p-6";
+  const imageSize = largePicture ? 240 : 160;
+  const imageClass = largePicture ? "w-60 h-60" : "w-40 h-40";
+  const cardPadding = largePicture ? "p-12" : "p-8";
 
   return (
     <section id="about" className="section bg-pray-900/30 relative pt-5">
@@ -30,16 +30,21 @@ const About = ({ largePicture = false, showActions = false, glow = false }: { la
             
             <div className="md:col-span-2 flex justify-center md:justify-start">
               
-              <Card className={`mt-20 w-35 max-w-sm mx-auto ${cardPadding} rounded-2xl shadow-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 flex flex-col items-center transition-all duration-300 ${glow ? 'ring-4 ring-green-400 ring-offset-2 animate-glow' : ''}`}>
+              <Card className={`mt-20 w-auto max-w-sm mx-auto ${cardPadding} rounded-2xl shadow-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 flex flex-col items-center transition-all duration-300 ${glow ? 'ring-4 ring-green-400 ring-offset-2 animate-glow' : ''}`}>
               <h2 className="section-title gradient-text">About Me</h2>
-                <div className={`${imageClass} rounded-full overflow-hidden border-4 border-primary/30 mb-4`}>
-                  <Image
-                    src="/Profile.jpeg"
-                    alt="T Nagendra Kumar"
-                    width={imageSize}
-                    height={imageSize}
-                    className="object-cover w-full h-full"
-                  />
+                <div className={`${imageClass} rounded-full overflow-hidden border-4 border-primary/30 mb-4 relative`}>
+                  {/* Glittering effect container */}
+                  <div className="absolute inset-0 overflow-hidden rounded-full">
+                    <Image
+                      src="/Profile.jpeg"
+                      alt="T Nagendra Kumar"
+                      width={imageSize}
+                      height={imageSize}
+                      className="object-cover w-full h-full"
+                    />
+                    {/* Glitter overlay - Adjusted for subtle diagonal shine */}
+                    <div className="glitter-overlay-subtle"></div>
+                  </div>
                 </div>
                 <div className="text-center">
                   <div className="text-xs text-primary font-semibold tracking-widest mb-1">FULL STACK DEVELOPER</div>
