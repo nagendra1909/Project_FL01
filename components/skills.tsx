@@ -6,6 +6,8 @@ import { useRef } from "react"
 import { FaReact, FaJs, FaNodeJs, FaPython, FaDatabase, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt } from 'react-icons/fa';
 import { SiNextdotjs, SiTypescript, SiTailwindcss, SiFirebase, SiPostgresql, SiMongodb, SiMaterialui } from 'react-icons/si';
 import { DiJavascript } from 'react-icons/di';
+import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const skills = [
   { name: "React.Js", level: 90, icon: FaReact },
@@ -55,24 +57,43 @@ const Skills = () => {
           animate={isInView ? "visible" : "hidden"}
           className="max-w-4xl mx-auto"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             {skills.map((skill, index) => (
-              <motion.div key={index} variants={itemVariants} className="bg-gray-900/70 p-4 rounded-lg">
-                <div className="mb-2 flex justify-between items-center">
-                  <div className="flex items-center">
-                    {skill.icon && <skill.icon className="mr-2 text-blue-400" size={20} />}
-                    <span className="text-sm font-medium font-mono text-gray-300">{skill.name}</span>
-                  </div>
-                  <span className="text-xs text-gray-400">{skill.level}%</span>
+              <motion.div key={index} variants={itemVariants} className="bg-gray-900/70 p-4 rounded-lg flex flex-col items-center border border-gray-700">
+                <div style={{ width: 100, height: 100 }} className="relative">
+                  <CircularProgressbarWithChildren
+                    value={skill.level}
+                    styles={buildStyles({
+                      // Rotation of path and trail in turns (0-1)
+                      rotation: 0.25,
+
+                      // Whether to use rounded or flat corners on the ends
+                      strokeLinecap: 'round',
+
+                      // Text size
+                      textSize: '16px',
+
+                      // How long animation takes to go from one percentage to another, in seconds
+                      pathTransitionDuration: 0.5,
+
+                      // Colors
+                      pathColor: `rgba(168, 85, 247, ${skill.level / 100})`, // Violet 400
+                      textColor: '#e2e8f0', // Slate 200
+                      trailColor: '#334155', // Slate 700
+                      backgroundColor: '#1f2937', // Gray 800
+                    })}
+                  >
+                    {/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
+                    {skill.icon && <skill.icon className="text-cyan-400 mb-1" size={30} />}
+                    <div style={{ fontSize: 12, color: '#e2e8f0' }}>
+                      <strong>{`${skill.level}%`}</strong>
+                    </div>
+                  </CircularProgressbarWithChildren>
+                   <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full bg-purple-500 opacity-30 mix-blend-screen filter blur-sm"></div>
+                    </div>
                 </div>
-                <div className="h-2 bg-gray-800 rounded-full overflow-hidden skill-bar">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-purple-600 to-blue-500"
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                  />
-                </div>
+                <span className="text-sm font-medium font-mono text-gray-300 mt-2">{skill.name}</span>
               </motion.div>
             ))}
           </div>

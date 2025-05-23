@@ -10,7 +10,7 @@ export default function SidebarWithAboutGlow({ aboutGlow, setAboutGlow }: { abou
         <Footer variant="vertical" onAboutHover={setAboutGlow} />
       </div>
       {/* Left 25%: About/Profile card */}
-      <aside className="flex-1 lg:w-[25%] max-w-[25vw]">
+      <aside className="flex-1 lg:w-[35%] max-w-[25vw]">
         <div className="fixed left-28 top-15 w-[320px] max-w-md rounded-3xl bg-black/30 shadow-2xl p-0 flex flex-col items-center justify-center z-20">
           <About largePicture showActions glow={aboutGlow} />
         </div>
